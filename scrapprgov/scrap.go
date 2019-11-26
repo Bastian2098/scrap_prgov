@@ -28,7 +28,7 @@ func main() {
 		e.ForEach("li.pageItemIndicator.listitem", func (_ int, e *colly.HTMLElement) {
 			var tittle,status,agency,location,opendate,preauctiondate,sheetdate string
 			tittle = e.ChildText("span.title")
-			status = e.ChildText("div.agency")
+			status = e.ChildText("div.agency") //status esta como: class = agency, arreglar con una condicion
 			agency = e.ChildText("div.agency")
 			location = e.ChildText("div.localization")
 			opendate = e.ChildText("div.fechaApertura")
