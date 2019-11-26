@@ -17,11 +17,11 @@ func main() {
 	c.OnHTML("div.cbq-layout-main",func (e *colly.HTMLElement){
 		e.ForEach("li.pageItemIndicator.listitem", func (_ int, e *colly.HTMLElement) {
 			var tendertittle string
-			tendertittle = e.ChildText("div.agency")
+			tendertittle = e.ChildText("span.title")
 			if tendertittle == ""{
 				return
 			}
-			fmt.Printf("Tittle: %s \n",tendertittle)
+			fmt.Printf("Tender tittle: %s \n",tendertittle)
 		})
 	})
 
