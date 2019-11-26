@@ -11,9 +11,9 @@ type tenderdata struct{
 	status string
 	agency string
 	location string 
-	open_date string
-	preauction_date string
-	sheet_date string
+	openDate string
+	preAuctionDate string
+	sheetDate string
 }
 
 func main() {
