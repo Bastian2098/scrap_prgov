@@ -6,6 +6,16 @@ import (
 	"github.com/gocolly/colly"
 )
 
+type tenderdata struct{
+	tittle string
+	status string
+	agency string
+	location string 
+	open_date string
+	preauction_date string
+	sheet_date string
+}
+
 func main() {
 
 	c := colly.NewCollector()
