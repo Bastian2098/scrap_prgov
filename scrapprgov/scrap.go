@@ -38,12 +38,12 @@ func main() {
 				return
 			}
 			fmt.Printf("Tender tittle: %s \n",tittle)
-			fmt.Printf(status)
-			fmt.Printf(agency)
-			fmt.Printf(location)
-			fmt.Printf(opendate)
-			fmt.Printf(preauctiondate)
-			fmt.Printf(sheetdate)
+			fmt.Printf("%s\n",status)
+			fmt.Printf("%s\n",agency)
+			fmt.Printf("%s\n",location)
+			fmt.Printf("%s\n",opendate)
+			fmt.Printf("%s\n",preauctiondate)
+			fmt.Printf("%s\n",sheetdate)
 		})
 	})
 
