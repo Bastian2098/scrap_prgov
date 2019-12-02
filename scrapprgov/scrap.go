@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/gocolly/colly"
 )
 
@@ -25,26 +24,31 @@ func main() {
 	})
 
 	c.OnHTML("div.cbq-layout-main",func (e *colly.HTMLElement){
-		e.ForEach("li.pageItemIndicator.listitem", func (_ int, e *colly.HTMLElement) {
-			var tittle,status,agency,location,opendate,preauctiondate,sheetdate string
-			tittle = e.ChildText("span.title")
-			status = e.ChildText("div.agency") //status esta como: class = agency, arreglar con una condicion
-			agency = e.ChildText("div.agency")
-			location = e.ChildText("div.localization")
-			opendate = e.ChildText("div.fechaApertura")
-			preauctiondate = e.ChildText("div.fechaPreSubasta")
-			sheetdate = e.ChildText("div.fechaPliegos")
-			if tittle == ""{
-				return
-			}
-			fmt.Printf("Tender tittle: %s \n",tittle)
-			fmt.Printf("%s\n",status)
-			fmt.Printf("%s\n",agency)
-			fmt.Printf("%s\n",location)
-			fmt.Printf("%s\n",opendate)
-			fmt.Printf("%s\n",preauctiondate)
-			fmt.Printf("%s\n",sheetdate)
+		tenders := make([]tenderdata,0)
+		e.ForEach("li.pageItemIndicator.listitem", func (_ int, e *colly.HTMLElement) {	
+				tender := new(tenderdata)
+				tender.tittle = e.ChildText("span.title")
+				tender.status = e.ChildText("div.agency")
+			 	tender.agency = e.ChildText("div.agency")
+				tender.location = e.ChildText("div.localization")
+				tender.openDate = e.ChildText("div.fechaApertura")
+				tender.preAuctionDate = e.ChildText("div.fechaPreSubasta")
+				tender.sheetDate = e.ChildText("div.fechaPliegos")
+				fmt.Printf("Titulo de licitacion: %s \n",tender.tittle)
+				fmt.Printf("%s\n",tender.status)
+				fmt.Printf("%s\n",tender.agency)
+				fmt.Printf("%s\n",tender.location)
+				fmt.Printf("%s\n",tender.openDate)
+				fmt.Printf("%s\n",tender.preAuctionDate)
+				fmt.Printf("%s\n",tender.sheetDate,)
+				fmt.Println("")
+				tenders = append(tenders,*tender)			
 		})
+		if tenders == nil{
+			fmt.Println("Vacio")
+		}else{
+			fmt.Println("Numero de licitaciones: ",len(tenders))
+		}
 	})
 
 	c.Visit("https://www2.pr.gov/subasta/Pages/subastas.aspx")
