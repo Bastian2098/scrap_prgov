@@ -28,8 +28,9 @@ func main() {
 		e.ForEach("li.pageItemIndicator.listitem", func (_ int, e *colly.HTMLElement) {	
 				tender := new(tenderdata)
 				tender.tittle = e.ChildText("span.title")
-				tender.status = e.ChildText("div.agency")
-			 	tender.agency = e.ChildText("div.agency")
+				in := e.ChildTexts("div.agency")
+				tender.status = in[0]
+				tender.agency = in[1]
 				tender.location = e.ChildText("div.localization")
 				tender.openDate = e.ChildText("div.fechaApertura")
 				tender.preAuctionDate = e.ChildText("div.fechaPreSubasta")
